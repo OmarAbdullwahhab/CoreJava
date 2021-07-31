@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2021 Omar Rashwan.
+ * Copyright 2021 Omar AbdullWahhab.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ import javax.persistence.Table;
 
 /**
  * 
- * @author Omar Rashwan
+ * @author Omar AbdullWahhab
  * @date : 30-07-2021 12:00 AM
  */
 @Entity
