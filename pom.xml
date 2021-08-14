@@ -8,6 +8,11 @@
     <modules>
         <module>JdbcProgramming</module>
         <module>JpaProgramming</module>
+        <module>extreme-opensource</module>
+        <module>selfdrivingcar-api</module>
+        <module>selfdrivingcar-ford-impl</module>
+        <module>selfdrivingcar-mercury-impl</module>
+        <module>selfdrivingcar-tester</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

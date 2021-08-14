@@ -45,10 +45,9 @@ public class JavaDatabaseProgramming {
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         Connection c = DerbyConnectionManager.getInstance().getConnection();
-        Statement stmt = c.createStatement();
-
-        printPersonsList(selectAll(stmt));
-        stmt.close();
+        try (Statement stmt = c.createStatement()) {
+            printPersonsList(selectAll(stmt));
+        }
         DerbyConnectionManager.getInstance().closeConnection();
         
     }
@@ -61,17 +60,18 @@ public class JavaDatabaseProgramming {
     }
     static List<Person> selectAll(Statement stmt) throws SQLException
     {
-        ResultSet persons = stmt.executeQuery("SELECT * FROM PERSONS");
         List<Person> allPersons = new ArrayList<>();
-        while (persons.next()) {
-            Person p = new Person();
-            p.setId(persons.getInt("ID"));
-            p.setFirstName(persons.getString("FIRST_NAME"));
-            p.setLastName(persons.getString("LAST_NAME"));
-            p.setDateOfBirth(persons.getDate("DOB"));
-            allPersons.add(p);
+        try (ResultSet persons = stmt.executeQuery("SELECT * FROM PERSONS")) {
+           
+            while (persons.next()) {
+                Person p = new Person();
+                p.setId(persons.getInt("ID"));
+                p.setFirstName(persons.getString("FIRST_NAME"));
+                p.setLastName(persons.getString("LAST_NAME"));
+                p.setDateOfBirth(persons.getDate("DOB"));
+                allPersons.add(p);
+            }
         }
-        persons.close();
         return allPersons;
     }
     static void create(Statement stmt, Person p) throws SQLException
